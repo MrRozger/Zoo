@@ -1,10 +1,9 @@
 package com.brozga.Zoo.service;
 
 import com.brozga.Zoo.exceptions.UnrecognizedAnimalTypeException;
-import com.brozga.Zoo.model.Animal;
-import com.brozga.Zoo.model.Elephant;
-import com.brozga.Zoo.model.Lion;
-import com.brozga.Zoo.model.Rabbit;
+import com.brozga.Zoo.factory.AnimalFactory;
+import com.brozga.Zoo.factory.Factory;
+import com.brozga.Zoo.model.*;
 import com.brozga.Zoo.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +30,11 @@ public class AnimalService {
 
     public List<Animal> findAllByZone(Long id) {
         return animalRepository.findAllByZoneId(id);
+    }
+
+    public Animal getAnimalType(String animalType) {
+        Factory factory = new AnimalFactory();
+        return factory.addAnimal(animalType);
     }
 
     public Animal getAnimal(String animalType) {

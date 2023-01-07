@@ -28,7 +28,7 @@ public class AnimalController {
     public ResponseEntity<Animal> addAnimal(@RequestBody AnimalDto animalDto) {
         Zone z = zoneService.findZoneByName(animalDto.getZoneName());
         int count = zoneService.countFood(z);
-        Animal animal = animalService.getAnimal(animalDto.getAnimalType());
+        Animal animal = animalService.getAnimalType(animalDto.getAnimalType());
 
         if (count + animal.getFood() <= z.getMaxFood()) {
             animal.setName(animalDto.getName());
