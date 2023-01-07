@@ -14,10 +14,11 @@ import java.util.List;
 public class AnimalService {
 
     private final AnimalRepository animalRepository;
-
+    private final AnimalFactory animalFactory;
     @Autowired
-    public AnimalService(AnimalRepository animalRepository) {
+    public AnimalService(AnimalRepository animalRepository, AnimalFactory animalFactory) {
         this.animalRepository = animalRepository;
+        this.animalFactory = animalFactory;
     }
 
     public Animal addAnimal(Animal animal) {
@@ -33,8 +34,7 @@ public class AnimalService {
     }
 
     public Animal getAnimalType(String animalType) {
-        Factory factory = new AnimalFactory();
-        return factory.addAnimal(animalType);
+        return animalFactory.addAnimal(animalType);
     }
 
     public Animal getAnimal(String animalType) {
